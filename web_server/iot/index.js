@@ -121,22 +121,22 @@ io.on('connection', function (socket) {
     socket.on("lamp-topic-change", function (data) {
         if (data == "on") {
             console.log('lamp-topic ON')
-            client.publish(topic4, 'lamp-on');
+            client.publish(topic4, '1');
         }
         else {
             console.log('lamp-topic  OFF')
-            client.publish(topic4, 'lamp-off');
+            client.publish(topic4, '0');
         }
     })
 
     socket.on("fan-topic-change", function (data) {
         if (data == "on") {
             console.log('fan-topic ON')
-            client.publish(topic5, 'fan-on');
+            client.publish(topic5, '1');
         }
         else {
             console.log('fan-topic OFF')
-            client.publish(topic5, 'fan-off');
+            client.publish(topic5, '0');
         }
     })
 
@@ -144,11 +144,11 @@ io.on('connection', function (socket) {
     socket.on("dehumi-topic-change", function (data) {
         if (data == "on") {
             console.log('dehumi-topic ON')
-            client.publish(topic6, 'dehumi-on');
+            client.publish(topic6, '1');
         }
         else {
             console.log('dehumi-topic OFF')
-            client.publish(topic6, 'dehumi-off');
+            client.publish(topic6, '0');
         }
     })
 
