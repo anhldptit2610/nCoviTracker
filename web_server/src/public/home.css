@@ -1,0 +1,226 @@
+body {
+    margin-left:  5px;
+    margin-right: 5px;
+    background-image: url('covid1.jpg');
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-size: cover;
+}
+
+.title {
+    font-size: 25px;
+    font-weight: bold;
+    color: #00b0f0;
+    padding-top: 13px;
+    padding-bottom: 10px;
+    /* display: flex; */
+}
+
+.form-container {
+    text-align: end;
+}
+
+.form {    
+    float: right;
+    margin: 4px 50px 4px 4px;
+    padding-left: 7px;
+    padding-right: 7px;
+    text-decoration: none;
+    color: #000000;
+    border: 2px solid #81d0eb;
+    border-radius: 10px;
+}
+
+.form:hover {
+    cursor: pointer;
+    background-color: rgb(105, 105, 218);
+    color: white;
+    transition: 0.7s;
+}
+
+.main-title {
+    background-color: #EFF4FB;
+    text-align: left;
+    display: flex;
+    color: black;
+    font-weight: bold;
+    font-size: 25px;
+    padding: 8px 0px 3px 10px;
+    margin: 0px 20px;
+    border-left: 1px solid #EFF4FB;
+    border-radius: 25px 25px 0px 0px;
+}
+
+.main-title1 {
+    background-color: #ace3eb;
+    text-align: left;
+    
+    color: black;
+    font-weight: bold;
+    font-size: 25px;
+    padding: 8px 0px 3px 10px;
+    margin: 0px 50px;
+    border-left: 1px solid #EFF4FB;
+    border-radius: 25px 25px 0px 0px;
+}
+
+.main-content {
+    padding: 0 20px 20px 20px;
+    margin: 0px 50px 50px 50px;
+    display: flex;
+    background-color: #EFF4FB;
+    border-radius: 0px 0px 25px 25px;
+    opacity: 0.965;
+}
+
+.left-block {
+    width: 65%;       
+    border: 1px solid #EFF4FB;
+    border-right: none;
+    background-color: #EFF4FB;
+}
+
+.current-state {
+    display: flex;
+}
+
+.parameters-display {
+    width: 70%;
+}
+
+.warning {
+    width: 30%;
+    padding-top: 40px;
+}
+
+.warning_bell{
+    display: flex;
+    height: 245px;
+    background-color: white;
+    margin: 5px;
+    border-radius: 50% ;
+    justify-content: center;
+    align-items: center;
+}
+
+
+.icon_text{
+    display: flex;
+}
+
+@keyframes bgcolor {
+    0% {
+        background-color: #114264
+    }
+
+    30% {
+        background-color: #8ef557
+    }
+
+    60% {
+        background-color: #5a2502
+    }
+
+    90% {
+        background-color: rgb(133, 30, 47)
+    }
+
+    100% {
+        background-color: #5e209c
+    }
+}
+
+.warning-mode-on{
+    -webkit-animation: bgcolor 4s infinite;
+    animation: bgcolor 2s infinite;
+    -webkit-animation-direction: alternate;
+    animation-direction: alternate;
+}
+
+.right-block {
+    width: 35%;
+    border: 1px solid #EFF4FB;
+    background-color: #EFF4FB;
+}
+
+.element-block {
+    width: 45%;
+    height: 145px;
+    display: flex;
+    background-color: #ffffff;
+    border-right: none;
+    text-align: center;
+    position: relative;
+    margin: 10px;
+    border-radius: 20px;
+    justify-content: center;
+    align-items: center;
+}
+
+.element-block1 {
+    height: 145px;
+    display: flex;
+    border-right: none;
+    text-align: center;
+    position: relative;
+    margin: 10px 10px 10px 25px;
+    border-radius: 20px;
+    background-color: #ffffff;
+    justify-content: center;
+    align-items: center;
+}
+
+.checkbox {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+}
+
+.checkbox:hover {
+    cursor: pointer;
+}
+
+.element-icon {
+    width: 56px;
+    height: 46px;
+}
+
+.element-text {
+    display: flex;
+    margin-left: 10px;
+    margin-top: 10px;
+    color: rgb(0, 0, 0);
+}
+
+.element-container {
+    display: flex;
+}
+
+.width100 {
+    width: 100%;
+}
+
+.center {
+    justify-content: center;
+}
+
+.turn-off {
+    background-color: #25384e;
+}
+
+.turn-on {
+    background-color: rgb(29, 117, 248);
+}
+
+.right5px {
+    margin-right: 5px;
+}
+
+.appliances:hover {
+    cursor: pointer;
+    background-color: rgb(145, 139, 197);
+    transition: 0.5s;
+}
+
+/* Button */

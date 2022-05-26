@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <script src="jquery.js"></script>
+    <script src="socket.io/socket.io.js"></script>
+    <script src="highcharts.js"></script>
+    <script src="export-data.js"></script>
+    <script src="accessibility.js"></script>
+
+    <script src="https://cdn.plot.ly/plotly-2.11.1.min.js"></script>
+    <script src="https://code.jscharting.com/latest/jscharting.js"></script>
+    <script src="https://smtpjs.com/v3/smtp.js"></script>
+
+    <link rel="stylesheet" href="chat.css">
+    <link rel="stylesheet" href="home1.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+    <script src="xuly.js"></script>
+
+    <link rel="stylesheet" href="home.css">
+    <title>Covid health monitoring</title>
+</head>
+
+<body>
+    <div class="main">
+        <div class="title">
+            <img class="element-icon" src="coronavirus.png" alt="" style="margin: 5px 0px 0px 50px;">
+            Stay At Home
+            <!-- <div style="width: 66.5%;"></div> -->
+            <a href="/history" class="form">Lịch sử đo</a>
+        </div>
+        <div class="main-title1">
+            <div style="padding-left: 20px;">
+                Overview
+            </div>
+        </div>
+        <div class="main-content">
+            <div class="left-block">
+                <div class="current-state">
+                    <div class="parameters-display">
+                        <div class="element-container" style="display: block;">
+                            <div class="element-block1" style="margin:10px 25px 10px 10px;">
+                                <div class="icon_text">
+                                    <img class="element-icon" src="timeIcon.png" alt="">
+                                    <div class="element-text">
+                                        <p id="time"></p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="element-container" style="margin-bottom: 10px;">
+                            <div class="element-block" id="warningSection">
+                                <div class="icon_text">
+                                    <img class="element-icon" src="temprature.png" alt="">
+                                    <div class="element-text">
+                                        <p class="right5px">Nhiệt độ: </p>
+                                        <p id="currentTemp"></p>
+                                        <p>°C</p>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="element-block" id="warningSection1">
+                                <div class="icon_text">
+                                    <img class="element-icon" src="drop.png" alt="">
+                                    <div class="element-text">
+                                        <p class="humi right5px">Độ ẩm: </p>
+                                        <p id="currentHumi"></p>
+                                        <p> %</p>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                    <div class="warning" id="warningSection4">
+                        <div class="warning_bell" id="warningSection4">
+                            <div class="icon_text" id="warningSection4">
+                                <img class="element-icon" src="bell.png" alt="" style="margin-top: 0px;">
+                                <p style="
+                                    margin-top: 10px;   
+                                    color: #777f89;"> Tự động gửi mail</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <figure class="highcharts-figure">
+                    <div id="container"></div>
+                </figure>
+            </div>
+            <div class="right-block">
+                <div class="livingroom-control">
+
+                    <div class="element-container" style="display: block;">
+                        <div class="element-block1" style="margin-bottom: 20px;" id="warningSection2">
+                            <div class="icon_text">
+                                <img class="element-icon" src="thermometer.png" alt="">
+                                <div class="element-text">
+
+                                    <p class="right5px">Nhiệt độ cơ thể: </p>
+                                    <p id="currentBodyTemp"></p>
+                                    <p>°C</p>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <div class="element-container" style="display: block;">
+                        <div class="element-block1" id="warningSection3">
+                            <div class="icon_text">
+                                <img class="element-icon" src="air-quality.png" alt="">
+                                <div class="element-text">
+
+                                    <p class="right5px">Chất lượng không khí: </p>
+                                    <p id="currentEco2"></p>
+                                    <p>Ppm</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="bedroom-control">
+                    <div class="main-title">
+                        Device control
+                    </div>
+                    <div class="element-container">
+                        <div id="bedroom-light" class="element-block appliances turn-off">
+                            <img class="element-icon" src="table-lamp.png" alt="">
+                            <input class="checkbox" type="checkbox" name="" onclick="bedroomLight()" id="bedroomLight">
+                            <div class="element-text" style="color: rgb(255, 255, 255);">
+                                <p>Đèn ngủ</p>
+                            </div>
+                        </div>
+                        <div id="bedroom-air-conditioner" class="element-block appliances turn-off">
+                            <img class="element-icon" src="air-conditioner.png" alt="">
+                            <input class="checkbox" type="checkbox" name="" onclick="bedroomAirConditioner()"
+                                id="bedroomAirConditioner">
+                            <div class="element-text" style="color: rgb(255, 255, 255);">
+                                <p>Điều hoà</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="element-container">
+                        <div id="bedroom-vent" class="element-block appliances width100 center turn-off">
+                            <img class="element-icon" src="air-vent.png" alt="">
+                            <input class="checkbox" type="checkbox" name="" onclick="airVent()" id="airVent">
+                            <div class="element-text" style="color: rgb(255, 255, 255);">
+                                <p>Cửa thông gió</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="chat-bar-collapsible">
+            <button id="chat-button" type="button" class="collapsible">Chat with AI!
+                <i id="chat-icon" style="color: #fff;" class="fa fa-fw fa-comments-o"></i>
+            </button>
+
+            <div class="content">
+                <div class="full-chat-block">
+                    <!-- Message Container -->
+                    <div class="outer-container">
+                        <div class="chat-container">
+                            <!-- Messages -->
+                            <div id="chatbox">
+                                <h5 id="chat-timestamp"></h5>
+                                <p id="botStarterMessage" class="botText"><span>Loading...</span></p>
+                            </div>
+
+                            <!-- User input box -->
+                            <div class="chat-bar-input-block">
+                                <div id="userInput">
+                                    <input id="textInput" class="input-box" type="text" name="msg"
+                                        placeholder="Tap 'Enter' to send a message">
+                                    <p></p>
+                                </div>
+
+                                <div class="chat-bar-icons">
+                                    <i id="chat-icon" style="color: crimson;" class="fa fa-fw fa-heart"
+                                        onclick="heartButton()"></i>
+                                    <i id="chat-icon" style="color: #333;" class="fa fa-fw fa-send"
+                                        onclick="sendButton()"></i>
+                                </div>
+                            </div>
+
+                            <div id="chat-bar-bottom">
+                                <p></p>
+                            </div>
+
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <script type="text/javascript">
+        //----------------------------------------///
+        var chart = Highcharts.chart('container', {
+            chart: {
+                zoomType: 'xy'
+            },
+            title: {
+                text: 'Đồ thị nhiệt độ - độ ẩm'
+            },
+
+            xAxis: [{
+                categories: [],
+                tickWidth: 1,
+                tickLength: 20
+            }],
+            yAxis: [{ // Primary yAxis
+                labels: {
+                    format: '{value}',
+                    formatter: function () {
+                        return this.value + '°C';
+                    },
+                    style: {
+                        color: Highcharts.getOptions().colors[1]
+                    }
+                },
+                title: {
+                    text: 'Nhiệt độ (°C)',
+                    style: {
+                        color: Highcharts.getOptions().colors[1]
+                    }
+                },
+            }, { // Secondary yAxis
+                title: {
+                    text: 'Độ ẩm(%)',
+                    style: {
+                        color: Highcharts.getOptions().colors[0]
+                    }
+                },
+                labels: {
+                    format: '{value}',
+                    formatter: function () {
+                        return this.value + '%';
+                    },
+                    style: {
+                        color: Highcharts.getOptions().colors[0]
+                    }
+                },
+                opposite: true
+            }],
+            tooltip: {
+                shared: true
+            },
+
+            series: [{
+                name: 'Độ ẩm',
+                type: 'column',
+                yAxis: 1,
+                data: [],
+                tooltip: {
+                    valueSuffix: '%'
+                }
+
+            }, {
+                name: 'Nhiệt độ',
+                type: 'spline',
+                data: [],
+                tooltip: {
+                    valueSuffix: '°C'
+                },
+                zones: [{
+                    value: 10,
+                    color: '#ff0015'
+                }, {
+                    value: 30,
+                    color: '#141107'
+                }, {
+                    color: '#ff0015'
+                }],
+            }],
+        });
+
+        socket.on("server-send-humi_graph", function (data) {
+            chart.series[0].setData(data);
+        });
+
+        socket.on("server-send-temp_graph", function (data) {
+            chart.series[1].setData(data);
+        });
+
+        socket.on("server-send-date_graph", function (data) {
+            chart.xAxis[0].setCategories(data);
+        });
+
+        // ------------- RTC ------------
+        var timeDisplay = document.getElementById("time");
+
+        function refreshTime() {
+            var dateString = new Date().toLocaleString("en-US", { timeZone: "Asia/Jakarta" });
+            var formattedString = dateString.replace(", ", " - ");
+            timeDisplay.innerHTML = formattedString;
+        }
+
+        setInterval(refreshTime, 1000);
+    // ------------------------------
+
+    </script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="responses.js"></script>
+    <script src="chat.js"></script>
+
+
+</body>
+
+</html>

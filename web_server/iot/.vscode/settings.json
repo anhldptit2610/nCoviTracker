@@ -1,0 +1,13 @@
+{
+    "git.ignoreLimitWarning": true,
+    "files.associations": {
+        "vector": "cpp",
+        "xstring": "cpp",
+        "xutility": "cpp",
+        "deque": "cpp",
+        "initializer_list": "cpp",
+        "list": "cpp",
+        "xhash": "cpp",
+        "xtree": "cpp"
+    }
+}
